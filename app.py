@@ -134,7 +134,7 @@ def viewnotes(nid):
         return redirect(url_for('login'))
     else:
         cursor=mydb.cursor(buffered=True)
-        cursor.execute('select title,nid,note_content from notes where nid=%s',[nid])
+        cursor.execute('select title,note_content from notes where nid=%s',[nid])
         note_data=cursor.fetchone()
         return render_template('viewnotes.html',note_data=note_data)
 @app.route('/update/<nid>',methods=['GET','POST'])
@@ -293,7 +293,7 @@ def search():
                 cursor.execute('select f_id,file_name,created_at from files_data where added_by=%s and file_name like %s',[session.get("email"),name+"%"])
                 fname=cursor.fetchall()
                 cursor.close()
-                return redirect(url_for('panel',sname=sname,fname=fname))
+                return render_template('nav.html',sname=sname,fname=fname)
             else:
                 flash('result not found')
                 return redirect(url_for('panel'))
@@ -309,7 +309,7 @@ def getexcel_data():
         cursor=mydb.cursor(buffered=True)
         cursor.execute('select title,note_content,created_at from notes where added_by=%s',[user])
         data=cursor.fetchall()
-        array_data=[list[i] for i in data]
+        array_data=[list(i) for i in data]
         array_data.insert(0,columns)
         return excel.make_response_from_array(array_data,'xlsx',filename='notesdata')
     
