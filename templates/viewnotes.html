@@ -1,0 +1,14 @@
+{% extends 'nav.html' %}
+{% block addcss %}
+<link rel="stylesheet" href="{{url_for('static',filename='addnotes.css')}}">
+{% endblock %}
+{% block content %}
+<div class="container" action="{{url_for('viewnotes')}}">
+    <form method="post">
+    <label for="titlefield">Title:</label><br>
+    <input type="text" placeholder="Enter a title" name="title" value="{{note_data[0]}}" readonly><br>
+    <label for="contentfield">Content:</label><br>
+    <textarea name="content" id="content-field" class="content-field" readonly>{{note_data[2]}}</textarea><br>
+    </form>
+</div>
+{% endblock %}

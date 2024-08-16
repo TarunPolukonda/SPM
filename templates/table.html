@@ -1,0 +1,32 @@
+{% extends 'nav.html' %}
+{% block addcss %}
+<style>
+    tr{
+        margin-right: 2%;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>Notesid</th>
+            <th>Title</th>
+            <th>Created_at</th>
+            <th>Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in data %}
+        <tr>
+            <td>{{i[0]}}</td>
+            <td>{{i[1]}}</td>
+            <td>{{i[2]}}</td>
+            <td><a href="{{url_for('viewnotes',nid=i[0])}}">view</a></td>
+            <td><a href="{{url_for('update',nid=i[0])}}">update</a></td>
+            <td><a href="{{url_for('delete',nid=i[0])}}">delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

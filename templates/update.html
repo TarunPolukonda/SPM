@@ -1,0 +1,15 @@
+{% extends 'nav.html' %}
+{% block addcss %}
+<link rel="stylesheet" href="{{url_for('static',filename='update.css')}}">
+{% endblock %}
+{% block content %}
+<form method="post">
+    <center>
+        New Title<br>
+        <input type="text" name="title" placeholder="Enter your New Title" value="{{note_data[0]}}"><br>
+        New Content<br>
+        <textarea name="content" placeholder="Enter your content">{{note_data[2]}}</textarea><br>
+      <button>Submit</button>
+    </center>
+</form>
+{% endblock %}

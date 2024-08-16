@@ -1,0 +1,6 @@
+.text{
+    color: aqua;
+}
+.submit:hover{
+    background-color: rgb(2, 253, 2);
+}
